@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpaca image generator html template</title>
+  <style>
+  body {
+    background: #eee;
+    font-family: sans-serif;
+  }
+
+  .container {
+    max-width: 600px;
+    border: 1px solid #777;
+    display: grid;
+    grid-template-areas:
+      "header"
+      "body";
+    grid-template-rows: 100px auto;
+    margin: 50px auto;
+  }
+
+  .header {
+    grid-area: header;
+    background: #eef;
+    padding: 20px;
+  }
+
+  .main {
+    grid-area: body;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    background: #ddd;
+    grid-column-gap: 20px;
+    padding: 20px;
+  }
+
+  .image-display {
+    /*background: red;*/
+    /*grid-column-start: 1;*/
+    /*grid-column-end: 2;*/
+    /*padding: 20px;*/
+  }
+
+  .options-display {
+    /*background: greenyellow;*/
+  }
+
+  .alpaca-frame {
+    /*position: relative;*/
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-row-gap: 20px;
+    grid-template-areas:
+      "img"
+      "buttons";
+  }
+
+  .alpaca-img {
+    width: 100%;
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*padding: 30px;*/
+    grid-area: img;
+  }
+
+  .img-footer-btn-container {
+    grid-area: buttons;
+    /*background: red;*/
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+  }
+
+  .btn {
+    background: #eff;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+
+  .btn:hover {
+    background: plum;
+  }
+
+  .accessories-container {
+    /*border: 1px solid black;*/
+  }
+
+  .styles-container {
+    /*border: 1px solid black;*/
+  }
+
+  .options-title {
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  /*buttons*/
+  .btn-apply-style {
+    box-sizing: border-box;
+    border-radius: 100px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid navy;
+    color: navy;
+    text-transform: capitalize;
+    margin: 6px;
+    transition: background, color 0.2s ease;
+  }
+
+  .active,
+  .btn-apply-style:hover {
+    background: navy;
+    color: white;
+    font-weight: bold;
+    margin: 6px 4px;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Alpaca image generator</h1>
+    </header>
+    <main class="main">
+      <div class="image-display">
+        <div class="alpaca-frame">
+          <img src="./images/alpaca/backgrounds/blue60.png" class="alpaca-img" alt="">
+          <img src="./images/alpaca/ears/default.png" class="alpaca-img ears" alt="">
+          <img src="./images/alpaca/neck/default.png" class="alpaca-img neck" alt="">
+          <img src="./images/alpaca/hair/default.png" class="alpaca-img hair" alt="">
+          <img src="./images/alpaca/nose.png" class="alpaca-img nose" alt="">
+          <img src="./images/alpaca/eyes/default.png" class="alpaca-img eyes" alt="">
+          <img src="./images/alpaca/mouth/default.png" class="alpaca-img mouth" alt="">
+          <img src="./images/alpaca/accessories/headphone.png" class="alpaca-img accesory" alt="">
+          <img src="./images/alpaca/leg/default.png" class="alpaca-img legs" alt="">
+        </div>
+        <div class="img-footer-btn-container">
+          <button class="btn">random</button>
+          <button class="btn">download</button>
+        </div>
+      </div>
+      <div class="options-display">
+        <div class="accessories-container">
+          <h3 class="options-title">accesorize alpaca</h3>
+          <div class="options-btn-container">
+            <button class="btn-apply-style active">hair</button>
+            <button class="btn-apply-style">ears</button>
+            <button class="btn-apply-style">mouth</button>
+            <button class="btn-apply-style">neck</button>
+            <button class="btn-apply-style">eyes</button>
+            <button class="btn-apply-style">leg</button>
+            <button class="btn-apply-style">background</button>
+            <button class="btn-apply-style">accessories</button>
+          </div>
+        </div>
+        <div class="styles-container">
+          <h3 class="options-title">style</h3>
+          <div class="options-btn-container">
+            <button class="btn-apply-style">default</button>
+            <button class="btn-apply-style">default</button>
+            <button class="btn-apply-style">default</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>
