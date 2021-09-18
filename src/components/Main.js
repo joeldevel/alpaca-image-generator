@@ -2,18 +2,37 @@ import React, { useState } from 'react';
 import SetAccessoryButton from './SetAccessoryButton';
 
 function Main() {
-  const [activeSetting, setActiveSetting] = useState();
+  const [activeSetting, setActiveSetting] = useState("");
+  const [activeCategoryOptions, setActiveCategoryOptions] = useState([]);
+
   const featuresCategories = [
-    {title: 'hair'}, 
-    {title:'ears'}, 
-    {title:'mouth'}, 
-    {title:'neck'}, 
-    {title:'eyes'}, 
-    {title:'leg'}, 
-    {title:'background'}, 
-    {title:'accessories'}
+    { title: 'hair', options: ['bang', 'curls', 'default', 'elegant', 'fancy', 'quiff', 'short'] },
+    { title: 'ears', options: ['default', 'tilt-backward', 'tilt-forward'] },
+    { title: 'mouth', options: ['astonished', 'default', 'eating', 'laugh', 'tongue'] },
+    { title: 'neck', options: ['bend-backward', 'bend-forward', 'default', 'thick'] },
+    { title: 'eyes', options: ['angry', 'default', 'naughty', 'panda', 'smart', 'star'] },
+    { title: 'leg', options: ['buble-tea', 'cookie', 'default', 'game-console', 'tilt-backward', 'tilt-forward'] },
+    {
+      title: 'background',
+      options: ['blue50', 'darkblue30', 'green50', 'grey40', 'red50', 'yellow50',
+        'blue60', 'darkblue50', 'green60', 'grey70', 'red60', 'yellow60',
+        'blue70', 'darkblue70', 'green70', 'grey80', 'red70', 'yellow70'
+      ]
+    },
+    { title: 'accessories', options: ['earings', 'flower', 'glasses', 'headphone'] }
   ];
 
+  function handleSetActive(e) {
+    setActiveSetting(prevState => {
+      fillOptions(e.target.title);
+      return e.target.title;
+    });
+  }
+
+  function fillOptions(title) {
+    const { options } = featuresCategories.find(e => e.title === title);
+    setActiveCategoryOptions(options);
+  }
   return (
     <main className="main" >
     <div className="image-display">
@@ -37,15 +56,13 @@ function Main() {
     <div className="accessories-container">
       <h3 className="options-title">accesorize alpaca</h3>
       <div className="options-btn-container">
-      {featuresCategories.map(e=><SetAccessoryButton title={e.title}/>)}
+      {featuresCategories.map(e=><SetAccessoryButton title={e.title} handleSetActive={handleSetActive}/>)}
       </div>
     </div>
     <div className="styles-container">
       <h3 className="options-title">style</h3>
       <div className="options-btn-container">
-      <button className="btn-apply-style">default</button>
-      <button className="btn-apply-style">default</button>
-      <button className="btn-apply-style">default</button>
+      { activeCategoryOptions.map(e => <SetAccessoryButton title={e}/>)}
       </div>
     </div>
     </div>
