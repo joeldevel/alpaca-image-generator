@@ -22,7 +22,7 @@ function Main() {
     { title: 'mouth', options: ['astonished', 'default', 'eating', 'laugh', 'tongue'] },
     { title: 'neck', options: ['bend-backward', 'bend-forward', 'default', 'thick'] },
     { title: 'eyes', options: ['angry', 'default', 'naughty', 'panda', 'smart', 'star'] },
-    { title: 'leg', options: ['buble-tea', 'cookie', 'default', 'game-console', 'tilt-backward', 'tilt-forward'] },
+    { title: 'leg', options: ['bubble-tea', 'cookie', 'default', 'game-console', 'tilt-backward', 'tilt-forward'] },
     {
       title: 'backgrounds',
       options: ['blue50', 'darkblue30', 'green50', 'grey40', 'red50', 'yellow50',
