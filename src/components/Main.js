@@ -4,6 +4,17 @@ import SetAccessoryButton from './SetAccessoryButton';
 function Main() {
   const [activeSetting, setActiveSetting] = useState("");
   const [activeCategoryOptions, setActiveCategoryOptions] = useState([]);
+  const [images, setImages] = useState([
+     {title:"backgrounds" , src:'./images/alpaca/backgrounds/blue60.png'},
+     {title: "ears" , src:'./images/alpaca/ears/default.png'},
+     {title: "neck", src:'./images/alpaca/neck/default.png'},
+     {title: "hair", src:'./images/alpaca/hair/default.png'},
+     {title: "nose", src:'./images/alpaca/nose.png'},
+     {title: "eyes", src:'./images/alpaca/eyes/default.png'},
+     {title: "mouth", src:'./images/alpaca/mouth/default.png'},
+     {title: "accessories", src:''},
+     {title: "leg", src:'./images/alpaca/leg/default.png'},
+    ]);
 
   const featuresCategories = [
     { title: 'hair', options: ['bang', 'curls', 'default', 'elegant', 'fancy', 'quiff', 'short'] },
@@ -13,7 +24,7 @@ function Main() {
     { title: 'eyes', options: ['angry', 'default', 'naughty', 'panda', 'smart', 'star'] },
     { title: 'leg', options: ['buble-tea', 'cookie', 'default', 'game-console', 'tilt-backward', 'tilt-forward'] },
     {
-      title: 'background',
+      title: 'backgrounds',
       options: ['blue50', 'darkblue30', 'green50', 'grey40', 'red50', 'yellow50',
         'blue60', 'darkblue50', 'green60', 'grey70', 'red60', 'yellow60',
         'blue70', 'darkblue70', 'green70', 'grey80', 'red70', 'yellow70'
@@ -29,23 +40,26 @@ function Main() {
     });
   }
 
+  function handleSetStyle(e) {
+    const newImages = images.map(i => {
+      if(i.title===activeSetting) {
+        i.src = `./images/alpaca/${activeSetting}/${e.target.title}.png`;
+      }
+      return i;
+      });
+     setImages(newImages);
+  }
+
   function fillOptions(title) {
     const { options } = featuresCategories.find(e => e.title === title);
     setActiveCategoryOptions(options);
   }
+
   return (
     <main className="main" >
     <div className="image-display">
     <div className="alpaca-frame">
-      <img src="./images/alpaca/backgrounds/blue60.png" className="alpaca-img" alt=""/>
-      <img src="./images/alpaca/ears/default.png" className="alpaca-img ears" alt=""/>
-      <img src="./images/alpaca/neck/default.png" className="alpaca-img neck" alt=""/>
-      <img src="./images/alpaca/hair/default.png" className="alpaca-img hair" alt=""/>
-      <img src="./images/alpaca/nose.png" className="alpaca-img nose" alt=""/>
-      <img src="./images/alpaca/eyes/default.png" className="alpaca-img eyes" alt=""/>
-      <img src="./images/alpaca/mouth/default.png" className="alpaca-img mouth" alt=""/>
-      <img src="" className="alpaca-img accesory" alt=""/>
-      <img src="./images/alpaca/leg/default.png" className="alpaca-img legs" alt=""/>
+    {images.map(i=><img src={i.src} className={`alpaca-img ${i.title}`} alt="" key={i.src}/>)}
     </div>
     <div className="img-footer-btn-container">
       <button className="btn">random</button>
@@ -56,13 +70,13 @@ function Main() {
     <div className="accessories-container">
       <h3 className="options-title">accesorize alpaca</h3>
       <div className="options-btn-container">
-      {featuresCategories.map(e=><SetAccessoryButton title={e.title} handleSetActive={handleSetActive}/>)}
+      {featuresCategories.map(e=><SetAccessoryButton title={e.title} handleClick={handleSetActive}/>)}
       </div>
     </div>
     <div className="styles-container">
       <h3 className="options-title">style</h3>
       <div className="options-btn-container">
-      { activeCategoryOptions.map(e => <SetAccessoryButton title={e}/>)}
+      { activeCategoryOptions.map(e => <SetAccessoryButton title={e} handleClick={handleSetStyle}/>)}
       </div>
     </div>
     </div>
